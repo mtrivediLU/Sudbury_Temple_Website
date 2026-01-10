@@ -1,0 +1,32 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+
+const events = [
+  { title: "Weekly Aarti and Bhajan", date: "Every Sunday", time: "6:00 PM", details: "Open to all." },
+  { title: "Festival celebration", date: "To be announced", time: "To be announced", details: "Schedule will be posted once confirmed." },
+  { title: "Community gathering", date: "Monthly", time: "After program", details: "Volunteer opportunities available." },
+];
+---
+
+<Layout title="Sudbury Prarthna Samaj | Events">
+  <section class="mx-auto max-w-6xl px-4 py-12">
+    <SectionHeading
+      title="Events"
+      subtitle="This page will be updated with confirmed festival dates and program details."
+    />
+
+    <div class="grid gap-4 md:grid-cols-2">
+      {events.map((e) => (
+        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <div class="text-sm font-semibold">{e.title}</div>
+          <div class="mt-2 text-sm text-slate-700">
+            <div><span class="font-semibold">Date:</span> {e.date}</div>
+            <div><span class="font-semibold">Time:</span> {e.time}</div>
+            <div class="mt-2 text-slate-600">{e.details}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</Layout>

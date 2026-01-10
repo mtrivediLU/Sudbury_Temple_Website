@@ -1,11 +1,205 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+import LinkCard from "../components/ui/LinkCard.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const quickLinks = [
+  { title: "Book a Puja", description: "Request a puja and share preferred dates and details.", href: "/services" },
+  { title: "Become a Member", description: "Join the temple community and support ongoing activities.", href: "/about" },
+  { title: "Volunteer", description: "Offer your time for events, setup, kitchen, and community service.", href: "/contact" },
+  { title: "Donate", description: "Support temple operations and future projects. Tax receipt available.", href: "/donate" },
+  { title: "Upcoming Events", description: "See festival dates, weekly satsang, and special programs.", href: "/events" },
+  { title: "Contact", description: "Reach out for questions, bookings, and general inquiries.", href: "/contact" },
+];
+
+const upcomingEvents = [
+  { title: "Weekly Aarti and Bhajan", date: "Every Sunday", time: "6:00 PM", note: "All are welcome." },
+  { title: "Festival Celebration", date: "To be announced", time: "To be announced", note: "Details will be posted once confirmed." },
+  { title: "Community Potluck", date: "Monthly", time: "After program", note: "Bring a vegetarian dish if possible." },
+];
+
+const sponsorshipsInTemple = [
+  { label: "Archana", amount: 21 },
+  { label: "Abhishek", amount: 51 },
+  { label: "Satyanarayana Katha", amount: 51 },
+  { label: "1 Hour Puja", amount: 101 },
+  { label: "Car Puja", amount: 51 },
+  { label: "Marriage Ceremony", amount: 1001 },
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title="Sudbury Prarthna Samaj | Home"
+  description="Sudbury Prarthna Samaj is a Hindu temple community in Greater Sudbury, Ontario."
+>
+  <section class="relative overflow-hidden">
+    <div
+      class="absolute inset-0 bg-cover bg-center"
+      style="background-image: url('/images/temple.jpg');"
+    ></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/65 via-black/40 to-white"></div>
+
+    <div class="relative mx-auto max-w-6xl px-4 pb-16 pt-16 md:pb-24 md:pt-24">
+      <div class="max-w-2xl">
+        <div class="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-xs text-white ring-1 ring-white/20">
+          A Hindu Temple Community in Greater Sudbury
+        </div>
+
+        <h1 class="mt-4 text-3xl font-semibold tracking-tight text-white md:text-5xl">
+          Sudbury Prarthna Samaj
+        </h1>
+
+        <p class="mt-4 text-base leading-relaxed text-white/90 md:text-lg">
+          A place for prayer, community, culture, and service. Join us for regular programs, festivals,
+          and spiritual learning for all ages.
+        </p>
+
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="/donate" class="rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100">
+            Donate
+          </a>
+          <a href="/events" class="rounded-lg bg-white/10 px-5 py-2.5 text-sm font-semibold text-white ring-1 ring-white/20 hover:bg-white/15">
+            View Events
+          </a>
+        </div>
+
+        <div class="mt-8 grid gap-3 text-sm text-white/90 sm:grid-cols-3">
+          <div class="rounded-xl bg-white/10 p-3 ring-1 ring-white/15">
+            <div class="text-xs text-white/70">Focus</div>
+            <div class="mt-1 font-semibold">Prayer and Culture</div>
+          </div>
+          <div class="rounded-xl bg-white/10 p-3 ring-1 ring-white/15">
+            <div class="text-xs text-white/70">Community</div>
+            <div class="mt-1 font-semibold">Events and Service</div>
+          </div>
+          <div class="rounded-xl bg-white/10 p-3 ring-1 ring-white/15">
+            <div class="text-xs text-white/70">Support</div>
+            <div class="mt-1 font-semibold">Donations and Sponsorships</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-12">
+    <SectionHeading
+      title="Start here"
+      subtitle="Quick actions for members, visitors, and sponsors."
+    />
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {quickLinks.map((x) => (
+        <LinkCard title={x.title} description={x.description} href={x.href} />
+      ))}
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-12">
+    <div class="grid gap-10 md:grid-cols-2 md:items-center">
+      <div>
+        <SectionHeading
+          title="About the temple"
+          subtitle="Sudbury Prarthna Samaj supports spiritual practice, Hindu traditions, and community connection in Greater Sudbury."
+        />
+        <div class="space-y-3 text-sm text-slate-700">
+          <p>
+            We welcome individuals and families to participate in regular prayer programs, festival celebrations,
+            and volunteer activities. Our goal is to create a warm and respectful place where culture and faith
+            can be practiced and shared.
+          </p>
+          <p>
+            If you are new to the area or visiting for the first time, please feel free to contact us.
+            We are happy to guide you on programs, membership, and sponsorship opportunities.
+          </p>
+        </div>
+
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="/about" class="rounded-lg bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-800">
+            Learn more
+          </a>
+          <a href="/contact" class="rounded-lg border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-50">
+            Contact us
+          </a>
+        </div>
+      </div>
+
+      <div class="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm">
+        <img
+          src="/images/temple.jpg"
+          alt="Temple altar"
+          class="h-72 w-full object-cover md:h-96"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-12">
+    <SectionHeading
+      title="Upcoming events"
+      subtitle="This is a starter list. Replace with confirmed dates once the schedule is finalized."
+    />
+
+    <div class="grid gap-4 md:grid-cols-3">
+      {upcomingEvents.map((e) => (
+        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <div class="text-sm font-semibold">{e.title}</div>
+          <div class="mt-2 text-sm text-slate-700">
+            <div><span class="font-semibold">Date:</span> {e.date}</div>
+            <div><span class="font-semibold">Time:</span> {e.time}</div>
+            <div class="mt-2 text-slate-600">{e.note}</div>
+          </div>
+          <div class="mt-4">
+            <a href="/events" class="text-sm font-semibold text-slate-900 hover:underline">See all events</a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-12">
+    <SectionHeading
+      title="Sponsorships"
+      subtitle="Use sponsorships to support temple activities. Replace amounts and items to match your official temple list."
+    />
+
+    <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+      <div class="text-sm font-semibold">In temple sponsorships</div>
+
+      <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {sponsorshipsInTemple.map((s) => (
+          <a
+            href="/donate"
+            class="rounded-xl bg-orange-600 px-4 py-3 text-center text-sm font-semibold text-white hover:bg-orange-700"
+          >
+            {s.label}: ${s.amount}
+          </a>
+        ))}
+      </div>
+
+      <div class="mt-6 rounded-xl bg-slate-50 p-4 text-sm text-slate-700">
+        Tax receipt will be issued where applicable. If you want a specific date or purpose, please mention it in your message.
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 pb-16 pt-4">
+    <div class="rounded-2xl bg-slate-900 p-8 text-white md:p-10">
+      <div class="grid gap-6 md:grid-cols-2 md:items-center">
+        <div>
+          <div class="text-2xl font-semibold tracking-tight">Support the temple</div>
+          <p class="mt-2 text-sm text-white/85">
+            Your support helps maintain the space, organize programs, and build long term community initiatives.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3 md:justify-end">
+          <a href="/donate" class="rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100">
+            Donate now
+          </a>
+          <a href="/contact" class="rounded-lg bg-white/10 px-5 py-2.5 text-sm font-semibold text-white ring-1 ring-white/20 hover:bg-white/15">
+            Ask a question
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>

@@ -1,0 +1,41 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+---
+
+<Layout title="Sudbury Prarthna Samaj | About">
+  <section class="mx-auto max-w-6xl px-4 py-12">
+    <SectionHeading
+      title="About Sudbury Prarthna Samaj"
+      subtitle="A community focused Hindu temple supporting prayer, culture, and service."
+    />
+
+    <div class="grid gap-10 md:grid-cols-2 md:items-start">
+      <div class="space-y-4 text-sm text-slate-700">
+        <p>
+          Sudbury Prarthna Samaj exists to support spiritual practice and community connection in Greater Sudbury.
+          We welcome families, students, and visitors who wish to participate in prayer programs and cultural events.
+        </p>
+        <p>
+          This website is being rebuilt. Content such as board members, membership details, and official schedules
+          will be updated as soon as they are confirmed by the temple committee.
+        </p>
+
+        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+          <div class="text-sm font-semibold text-slate-900">Membership</div>
+          <p class="mt-2 text-sm text-slate-700">
+            Membership supports temple operations and helps organize programs and festivals. For membership requests,
+            please contact us and we will share the latest membership process and fees.
+          </p>
+          <a href="/contact" class="mt-3 inline-block text-sm font-semibold text-slate-900 hover:underline">
+            Contact for membership
+          </a>
+        </div>
+      </div>
+
+      <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+        <img src="/images/temple.jpg" alt="Temple" class="h-80 w-full object-cover" loading="lazy" />
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,41 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+
+const services = [
+  { title: "Regular Puja", desc: "Weekly and regular prayer services for the community." },
+  { title: "Festival Puja", desc: "Festival celebrations and special programs throughout the year." },
+  { title: "Special Puja", desc: "Puja by request for specific occasions and spiritual needs." },
+  { title: "Car Puja", desc: "Blessings for a new car or vehicle." },
+  { title: "House Warming Puja", desc: "Griha Pravesh style puja for new homes." },
+  { title: "Wedding and Ceremony Support", desc: "Support for traditional ceremonies, based on availability." },
+];
+---
+
+<Layout title="Sudbury Prarthna Samaj | Services">
+  <section class="mx-auto max-w-6xl px-4 py-12">
+    <SectionHeading
+      title="Puja and services"
+      subtitle="This is a starter list. Update items, pricing, and booking process once confirmed by the temple team."
+    />
+
+    <div class="grid gap-4 md:grid-cols-2">
+      {services.map((s) => (
+        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <div class="text-sm font-semibold">{s.title}</div>
+          <div class="mt-2 text-sm text-slate-700">{s.desc}</div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-10 rounded-2xl bg-slate-900 p-7 text-white">
+      <div class="text-lg font-semibold">Request a booking</div>
+      <p class="mt-2 text-sm text-white/85">
+        Please contact us with the service name, preferred date, and any details. We will respond with availability and next steps.
+      </p>
+      <a href="/contact" class="mt-4 inline-block rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100">
+        Contact for booking
+      </a>
+    </div>
+  </section>
+</Layout>

@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+/* Small global polish */
+:root {
+  color-scheme: light;
+}

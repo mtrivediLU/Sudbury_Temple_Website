@@ -1,22 +1,155 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import "../styles/global.css";
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Sudbury Prarthna Samaj",
+  description = "A Hindu temple in Greater Sudbury, Ontario. Prayer, community, culture, and service.",
+} = Astro.props;
+
+const year = new Date().getFullYear();
+
+const nav = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Events", href: "/events" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Donate", href: "/donate" },
+  { label: "Contact", href: "/contact" },
+];
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+
+  <body class="min-h-screen bg-white text-slate-900">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:shadow"
+    >
+      Skip to content
+    </a>
+
+    <header class="sticky top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur">
+      <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+        <a href="/" class="flex items-center gap-3">
+          <div class="grid h-10 w-10 place-items-center rounded-xl bg-slate-900 text-white">
+            <span class="text-sm font-semibold">SPS</span>
+          </div>
+          <div class="leading-tight">
+            <div class="text-sm font-semibold">Sudbury Prarthna Samaj</div>
+            <div class="text-xs text-slate-600">Greater Sudbury, Ontario</div>
+          </div>
+        </a>
+
+        <nav class="hidden items-center gap-1 md:flex">
+          {nav.map((item) => (
+            <a
+              href={item.href}
+              class="rounded-lg px-3 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900"
+            >
+              {item.label}
+            </a>
+          ))}
+          <a
+            href="/donate"
+            class="ml-2 rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800"
+          >
+            Donate
+          </a>
+        </nav>
+
+        <button
+          id="menuBtn"
+          type="button"
+          class="inline-flex items-center justify-center rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 md:hidden"
+          aria-label="Open menu"
+        >
+          Menu
+        </button>
+      </div>
+
+      <div id="mobileMenu" class="hidden border-t border-slate-200 bg-white md:hidden">
+        <div class="mx-auto grid max-w-6xl gap-1 px-4 py-3">
+          {nav.map((item) => (
+            <a
+              href={item.href}
+              class="rounded-lg px-3 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900"
+            >
+              {item.label}
+            </a>
+          ))}
+          <a
+            href="/donate"
+            class="mt-2 rounded-lg bg-slate-900 px-4 py-2 text-center text-sm font-semibold text-white hover:bg-slate-800"
+          >
+            Donate
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="border-t border-slate-200">
+      <div class="mx-auto grid max-w-6xl gap-8 px-4 py-10 md:grid-cols-3">
+        <div>
+          <div class="text-sm font-semibold">Sudbury Prarthna Samaj</div>
+          <p class="mt-2 text-sm text-slate-600">
+            A community focused Hindu temple supporting prayer, culture, and service in Greater Sudbury.
+          </p>
+        </div>
+
+        <div>
+          <div class="text-sm font-semibold">Quick Links</div>
+          <div class="mt-2 grid gap-2 text-sm">
+            <a class="text-slate-700 hover:text-slate-900" href="/events">Upcoming Events</a>
+            <a class="text-slate-700 hover:text-slate-900" href="/services">Puja and Services</a>
+            <a class="text-slate-700 hover:text-slate-900" href="/donate">Donate</a>
+            <a class="text-slate-700 hover:text-slate-900" href="/contact">Contact</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="text-sm font-semibold">Contact</div>
+          <div class="mt-2 grid gap-2 text-sm text-slate-700">
+            <div>Email: sudbury.mandir@gmail.com</div>
+            <div>Location: Greater Sudbury, Ontario</div>
+            <div class="text-xs text-slate-500">
+              Replace phone number and address once confirmed.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-slate-200">
+        <div class="mx-auto max-w-6xl px-4 py-4 text-xs text-slate-500">
+          © {year} Sudbury Prarthna Samaj. All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const btn = document.getElementById("menuBtn");
+      const menu = document.getElementById("mobileMenu");
+      if (btn && menu) {
+        btn.addEventListener("click", () => {
+          menu.classList.toggle("hidden");
+        });
+      }
+    </script>
+  </body>
+</html>
