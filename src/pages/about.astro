@@ -3,10 +3,17 @@ import Layout from "../layouts/Layout.astro";
 import SectionHeading from "../components/ui/SectionHeading.astro";
 
 /**
+ * GitHub Pages project site fix:
+ * Prefix all internal links + /public assets with BASE_URL
+ * so they become /Sudbury_Temple_Website/...
+ */
+const base = (import.meta.env.BASE_URL ?? "/").replace(/\/?$/, "/");
+const href = (path: string) => `${base}${String(path).replace(/^\/+/, "")}`;
+const asset = (path: string) => `${base}${String(path).replace(/^\/+/, "")}`;
+
+/**
  * ABOUT PAGE CONTENT (based on your provided copy)
- * Notes:
- * - Board / current directors: keep intentionally general until officially confirmed.
- * - Image: ensure /public/images/temple.jpg exists.
+ * - Image file exists at: /public/images/temple.jpg
  */
 
 const missionObjectives = [
@@ -24,7 +31,8 @@ const missionObjectives = [
   },
   {
     title: "Community",
-    description: "Creating a welcoming atmosphere for individuals and families to gather for worship, fellowship, and support.",
+    description:
+      "Creating a welcoming atmosphere for individuals and families to gather for worship, fellowship, and support.",
   },
 ];
 
@@ -38,8 +46,7 @@ const timeline = [
   {
     year: "1976",
     title: "Prayer gatherings began",
-    description:
-      "Prayer gatherings began and the community started organizing regular meetings.",
+    description: "Prayer gatherings began and the community started organizing regular meetings.",
   },
   {
     year: "1986",
@@ -56,8 +63,7 @@ const timeline = [
   {
     year: "Today",
     title: "A spiritual and cultural hub",
-    description:
-      "The temple continues to grow and serve as a spiritual and cultural hub for Northern Ontario.",
+    description: "The temple continues to grow and serve as a spiritual and cultural hub for Northern Ontario.",
   },
 ];
 
@@ -103,13 +109,13 @@ const highlights = [
 
         <div class="mt-6 flex flex-wrap gap-3">
           <a
-            href="/services"
+            href={href("services")}
             class="rounded-lg bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-800"
           >
             Explore services
           </a>
           <a
-            href="/contact"
+            href={href("contact")}
             class="rounded-lg border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-50"
           >
             Contact us
@@ -119,10 +125,11 @@ const highlights = [
 
       <div class="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm">
         <img
-          src="/images/temple.jpg"
+          src={asset("images/temple.jpg")}
           alt="Temple prayer space"
           class="h-72 w-full object-cover md:h-80"
           loading="lazy"
+          decoding="async"
         />
       </div>
     </div>
@@ -200,18 +207,19 @@ const highlights = [
         <div>
           <div class="text-2xl font-semibold tracking-tight">Visit and participate</div>
           <p class="mt-2 text-sm text-white/85">
-            Join us for Sunday gatherings, festival celebrations, and community programs. If you are new, we are happy to help you plan your first visit.
+            Join us for Sunday gatherings, festival celebrations, and community programs. If you are new, we are happy
+            to help you plan your first visit.
           </p>
         </div>
         <div class="flex flex-wrap gap-3 md:justify-end">
           <a
-            href="/events"
+            href={href("events")}
             class="rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100"
           >
             View events
           </a>
           <a
-            href="/services"
+            href={href("services")}
             class="rounded-lg bg-white/10 px-5 py-2.5 text-sm font-semibold text-white ring-1 ring-white/20 hover:bg-white/15"
           >
             Services and programs
