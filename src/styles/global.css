@@ -1,6 +1,30 @@
 @import "tailwindcss";
 
-/* Small global polish */
-:root {
-  color-scheme: light;
+/* Site-wide readability defaults (senior-friendly) */
+@layer base {
+  html {
+    /* Bigger default text across the site */
+    font-size: 18px;
+  }
+
+  body {
+    @apply bg-white text-slate-800 antialiased;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+
+  li {
+    @apply leading-relaxed;
+  }
+
+  a {
+    @apply underline-offset-4;
+  }
+
+  /* Accessible focus ring for keyboard users */
+  :focus-visible {
+    @apply outline-none ring-2 ring-slate-400 ring-offset-2;
+  }
 }

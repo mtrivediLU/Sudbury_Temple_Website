@@ -1,761 +1,157 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import SectionHeading from "../components/ui/SectionHeading.astro";
-import LinkCard from "../components/ui/LinkCard.astro";
 
-/**
- * IMPORTANT
- * 1) Make sure your hero image exists at: /public/images/temple.jpg
- * 2) Replace CANADAHELPS_URL with your official CanadaHelps donation link.
- * 3) Confirm the official phone number before publishing it.
- */
-
-const CANADAHELPS_URL = "#"; // TODO: Replace with official CanadaHelps donation link
-const TEMPLE_EMAIL = "sudbury.mandir@gmail.com";
-
-// Public listings show variations for postal code on the same street.
-// Confirm the preferred postal code and update it once approved.
-const TEMPLE_ADDRESS = "485 McNeill Blvd, Greater Sudbury, Ontario";
-const MAILING_ADDRESS = "15 Merlot Crt, Sudbury, Ontario, P3E 0C8";
-const VISIT_TIME = "Sunday, typically 11:00 AM to 1:00 PM";
-
-const PHONE_DISPLAY = "To be confirmed"; // TODO: Replace with official number once confirmed
-
-const quickLinks = [
-  { title: "Learn about us", description: "Read our story, mission, and history.", href: "#our-story" },
-  { title: "View upcoming events", description: "Festival schedules, announcements, and updates.", href: "#events" },
-  { title: "See services and puja offerings", description: "Weekly services, festivals, and puja requests.", href: "#services" },
-  { title: "Donate through CanadaHelps", description: "Support temple operations and community programs.", href: CANADAHELPS_URL },
-  { title: "Find us and contact us", description: "Address, visiting hours, and contact form.", href: "#contact" },
-];
-
-const missionObjectives = [
+const quickActions = [
   {
-    title: "Advancement of Religion",
-    description:
-      "Establishing and maintaining a place of worship for the Hindu community.",
+    title: "Plan your first visit",
+    desc: "Location, what to expect, and how to contact us.",
+    href: "/contact",
   },
   {
-    title: "Cultural Awareness",
-    description:
-      "Sharing Indian heritage and culture with the broader society.",
+    title: "View upcoming events",
+    desc: "Festival schedules, announcements, and reminders.",
+    href: "/events",
   },
   {
-    title: "Education",
-    description:
-      "Supporting children and youth in learning values of life and spiritual philosophy.",
+    title: "Explore services",
+    desc: "Weekly gathering details and puja requests.",
+    href: "/services",
   },
   {
-    title: "Community",
-    description:
-      "Creating a welcoming atmosphere for individuals and families to gather for worship, fellowship, and support.",
+    title: "Learn our story",
+    desc: "Mission, history, and community role in Sudbury.",
+    href: "/about",
   },
 ];
 
-const timeline = [
-  {
-    year: "1976",
-    title: "Early prayer gatherings",
-    description:
-      "Prayer gatherings began and the community started organizing regular meetings.",
-  },
-  {
-    year: "1986",
-    title: "Permanent place of worship",
-    description:
-      "A permanent place of worship was established in the Donovan area by acquiring and renovating an existing church building.",
-  },
-  {
-    year: "2013",
-    title: "Temple improvements",
-    description:
-      "A major fundraising initiative supported improvements such as accessibility and interior renovations to better serve worship and community gatherings.",
-  },
-  {
-    year: "Today",
-    title: "Growing community hub",
-    description:
-      "The temple continues to grow and serve as a spiritual and cultural hub for Northern Ontario.",
-  },
+const sundayService = {
+  title: "Sunday Darshan and Prayer Gathering",
+  time: "Typical time: 11:00 AM to 1:00 PM",
+  note: "Prayers are followed by prasad and community time.",
+};
+
+const firstVisit = [
+  "A respectful and welcoming environment",
+  "Bhajans, prayers, and spiritual reflection",
+  "Prasad and fellowship after prayers",
+  "Family friendly atmosphere and newcomer friendly community",
 ];
 
-const festivals = [
-  "Diwali",
-  "Navratri",
-  "Holi",
-  "Janmashtami",
-  "Maha Shivratri",
-  "Ram Navami",
-];
-
-const volunteerAreas = [
-  "Event setup and cleanup",
-  "Prasad preparation and serving",
-  "Festival planning",
-  "Community outreach",
-  "Communications and website support",
-];
-
-const galleryCards = [
-  {
-    title: "Festival celebrations",
-    description: "Diwali, Navratri, Holi, Janmashtami, and more.",
-  },
-  {
-    title: "Sunday gatherings",
-    description: "Community prayer moments and fellowship.",
-  },
-  {
-    title: "Temple interior",
-    description: "Prayer space respectfully photographed.",
-  },
-  {
-    title: "Volunteer activities",
-    description: "Service, preparation, and event support.",
-  },
-  {
-    title: "Cultural programs",
-    description: "Community collaborations and special events.",
-  },
-  {
-    title: "Community milestones",
-    description: "Highlights from important temple moments.",
-  },
-];
+const charityLine = "Registered Charity. Charity Registration Number: 119205078 RR 0001";
 ---
 
 <Layout
   title="Sudbury Prarthna Samaj | Home"
-  description="Sudbury Prarthna Samaj is a Hindu temple and community hub in Greater Sudbury."
+  description="Sudbury Prarthna Samaj is a Hindu temple and community hub in Greater Sudbury, Ontario."
 >
-  <!-- HERO / HOME -->
-  <section id="home" class="relative overflow-hidden">
-    <div
-      class="absolute inset-0 bg-cover bg-center"
-      style="background-image: url('/images/temple.jpg');"
-    ></div>
-    <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/45 to-white"></div>
-
-    <div class="relative mx-auto max-w-6xl px-4 pb-14 pt-14 md:pb-20 md:pt-20">
-      <div class="max-w-2xl">
-        <div class="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-xs text-white ring-1 ring-white/20">
-          Hindu Temple and Community Hub · Greater Sudbury
-        </div>
-
-        <h1 class="mt-4 text-3xl font-semibold tracking-tight text-white md:text-5xl">
-          Sudbury Prarthna Samaj
-        </h1>
-
-        <p class="mt-4 text-base leading-relaxed text-white/90 md:text-lg">
-          Sudbury Prarthana Samaj is a Hindu temple and community hub in Greater Sudbury.
-          We welcome individuals and families to gather for worship, cultural celebration,
-          learning, and fellowship.
-        </p>
-
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a
-            href="#visit"
-            class="rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100"
-          >
-            Plan your first visit
-          </a>
-
-          <a
-            href={CANADAHELPS_URL}
-            target={CANADAHELPS_URL === "#" ? undefined : "_blank"}
-            rel={CANADAHELPS_URL === "#" ? undefined : "noopener noreferrer"}
-            class="rounded-lg bg-white/10 px-5 py-2.5 text-sm font-semibold text-white ring-1 ring-white/20 hover:bg-white/15"
-          >
-            Donate via CanadaHelps
-          </a>
-        </div>
-
-        <div class="mt-8 grid gap-3 text-sm text-white/90 sm:grid-cols-3">
-          <div class="rounded-xl bg-white/10 p-3 ring-1 ring-white/15">
-            <div class="text-xs text-white/70">Weekly gathering</div>
-            <div class="mt-1 font-semibold">Sunday 11:00 AM to 1:00 PM</div>
+  <!-- HERO (simple, calm, readable) -->
+  <section class="bg-slate-50">
+    <div class="mx-auto max-w-6xl px-4 py-12 md:py-16">
+      <div class="grid gap-10 md:grid-cols-2 md:items-center">
+        <div>
+          <div class="inline-flex items-center rounded-full bg-white px-3 py-1 text-sm font-semibold text-slate-700 ring-1 ring-slate-200">
+            Hindu temple and community hub in Greater Sudbury
           </div>
-          <div class="rounded-xl bg-white/10 p-3 ring-1 ring-white/15">
-            <div class="text-xs text-white/70">Programs</div>
-            <div class="mt-1 font-semibold">Prayers, bhajans, festivals</div>
-          </div>
-          <div class="rounded-xl bg-white/10 p-3 ring-1 ring-white/15">
-            <div class="text-xs text-white/70">Community</div>
-            <div class="mt-1 font-semibold">Prasad and fellowship</div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Section chips -->
-      <div class="mt-10 flex flex-wrap gap-2">
-        {[
-          { label: "Home", href: "#home" },
-          { label: "Our Story", href: "#our-story" },
-          { label: "Services", href: "#services" },
-          { label: "Events", href: "#events" },
-          { label: "Gallery", href: "#gallery" },
-          { label: "Contact", href: "#contact" },
-        ].map((x) => (
-          <a
-            href={x.href}
-            class="rounded-full bg-white/10 px-4 py-2 text-xs font-semibold text-white ring-1 ring-white/15 hover:bg-white/15"
-          >
-            {x.label}
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
+          <h1 class="mt-4 text-4xl font-semibold tracking-tight text-slate-900 md:text-5xl">
+            Sudbury Prarthna Samaj
+          </h1>
 
-  <!-- WELCOME + SUNDAY SERVICE + FIRST VISIT -->
-  <section class="mx-auto max-w-6xl px-4 py-12">
-    <div class="grid gap-10 md:grid-cols-2 md:items-start">
-      <div>
-        <SectionHeading
-          title="Welcome"
-          subtitle="We serve the Hindu community in Greater Sudbury and surrounding Northern Ontario."
-        />
-
-        <div class="space-y-4 text-sm text-slate-700">
-          <p>
-            Our temple brings people together through weekly prayers, devotional singing,
-            spiritual reflection, festivals, and community support.
+          <p class="mt-4 text-base text-slate-700 md:text-lg">
+            We welcome individuals and families to gather for worship, cultural celebration, learning, and fellowship.
           </p>
 
-          <div id="visit" class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <div class="text-sm font-semibold text-slate-900">Sunday service highlight</div>
-            <div class="mt-3 text-sm text-slate-700">
-              <div class="font-semibold">Sunday Darshan and Prayer Gathering</div>
-              <div class="mt-1">
-                Typical time: <span class="font-semibold">11:00 AM to 1:00 PM</span>
-              </div>
-              <div class="mt-2 text-slate-600">
-                Prayers are followed by prasad and community time.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
-        <div class="text-sm font-semibold text-slate-900">What you can expect on your first visit</div>
-        <ul class="mt-4 space-y-2 text-sm text-slate-700">
-          <li class="flex gap-2">
-            <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-900"></span>
-            A respectful and welcoming environment
-          </li>
-          <li class="flex gap-2">
-            <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-900"></span>
-            Bhajans, prayers, and spiritual reflection
-          </li>
-          <li class="flex gap-2">
-            <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-900"></span>
-            Prasad and fellowship after prayers
-          </li>
-          <li class="flex gap-2">
-            <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-900"></span>
-            Family friendly atmosphere and newcomer friendly community
-          </li>
-        </ul>
-
-        <div class="mt-6 rounded-xl bg-white p-4 text-xs text-slate-600 ring-1 ring-slate-200">
-          Registered Charity. Charity Registration Number: <span class="font-semibold text-slate-900">119205078 RR 0001</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- QUICK LINKS -->
-  <section class="mx-auto max-w-6xl px-4 pb-12">
-    <SectionHeading
-      title="Quick links"
-      subtitle="Shortcuts for visitors, members, and volunteers."
-    />
-    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {quickLinks.map((x) => (
-        <LinkCard title={x.title} description={x.description} href={x.href} />
-      ))}
-    </div>
-
-    {CANADAHELPS_URL === "#" ? (
-      <div class="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
-        Donation link is not set yet. Replace <span class="font-semibold">CANADAHELPS_URL</span> in <span class="font-semibold">index.astro</span> with the official CanadaHelps page link.
-      </div>
-    ) : null}
-  </section>
-
-  <!-- OUR STORY -->
-  <section id="our-story" class="mx-auto max-w-6xl px-4 py-12">
-    <SectionHeading
-      title="Our story"
-      subtitle="Mission, objectives, history, and our role in the community."
-    />
-
-    <div class="grid gap-10 md:grid-cols-2 md:items-start">
-      <div class="space-y-4 text-sm text-slate-700">
-        <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-          <div class="text-sm font-semibold text-slate-900">Who we are</div>
-          <p class="mt-3">
-            Sudbury Prarthana Samaj is a non profit Hindu community organization and temple serving Greater Sudbury.
-            We provide a place for worship, spiritual growth, cultural celebration, and community connection.
+          <p class="mt-3 text-base text-slate-700 md:text-lg">
+            We serve the Hindu community in Greater Sudbury and surrounding Northern Ontario through weekly prayers,
+            festivals, and community support.
           </p>
-        </div>
 
-        <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-          <div class="text-sm font-semibold text-slate-900">Leadership and volunteers</div>
-          <p class="mt-3">
-            Sudbury Prarthana Samaj is supported by dedicated volunteers and community leaders who help plan services,
-            festivals, and temple operations. For accuracy, the current Board of Directors list should be shared through
-            official temple communications and announcements.
-          </p>
-        </div>
-
-        <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-          <div class="text-sm font-semibold text-slate-900">Community role</div>
-          <p class="mt-3">
-            The temple participates in Sudbury’s multicultural landscape and collaborates with local cultural groups
-            for larger celebrations and community wide initiatives. The community has also supported local causes
-            through fundraising and engagement.
-          </p>
-        </div>
-      </div>
-
-      <div class="space-y-6">
-        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
-          <div class="text-sm font-semibold text-slate-900">Mission and objectives</div>
-          <div class="mt-4 grid gap-3 sm:grid-cols-2">
-            {missionObjectives.map((m) => (
-              <div class="rounded-xl bg-white p-4 shadow-sm ring-1 ring-slate-200">
-                <div class="text-sm font-semibold text-slate-900">{m.title}</div>
-                <div class="mt-2 text-sm text-slate-700">{m.description}</div>
-              </div>
-            ))}
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a
+              href="/contact"
+              class="rounded-lg bg-slate-900 px-6 py-3 text-base font-semibold text-white hover:bg-slate-800"
+            >
+              Plan your visit
+            </a>
+            <a
+              href="/donate"
+              class="rounded-lg bg-white px-6 py-3 text-base font-semibold text-slate-900 ring-1 ring-slate-200 hover:bg-slate-100"
+            >
+              Donate
+            </a>
           </div>
         </div>
 
-        <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-          <div class="text-sm font-semibold text-slate-900">History and growth</div>
-          <div class="mt-4 space-y-4">
-            {timeline.map((t) => (
-              <div class="rounded-xl bg-slate-50 p-4">
-                <div class="flex items-baseline justify-between gap-4">
-                  <div class="text-sm font-semibold text-slate-900">{t.title}</div>
-                  <div class="text-xs font-semibold text-slate-700">{t.year}</div>
-                </div>
-                <div class="mt-2 text-sm text-slate-700">{t.description}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section id="services" class="mx-auto max-w-6xl px-4 py-12">
-    <SectionHeading
-      title="Services and programs"
-      subtitle="Weekly services, festivals, puja requests, education, community support, and volunteering."
-    />
-
-    <div class="grid gap-6 md:grid-cols-2">
-      <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <div class="text-sm font-semibold text-slate-900">Weekly services</div>
-        <div class="mt-3 text-sm text-slate-700">
-          <div class="font-semibold">Sunday Darshan and Satsang</div>
-          <div class="mt-1">Typical time: <span class="font-semibold">11:00 AM to 1:00 PM</span></div>
-          <div class="mt-2 text-slate-600">
-            Includes bhajans, prayers, spiritual reflection, and community fellowship.
-          </div>
-        </div>
-      </div>
-
-      <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <div class="text-sm font-semibold text-slate-900">Festivals and special gatherings</div>
-        <div class="mt-3 text-sm text-slate-700">
-          The temple celebrates major Hindu festivals and holy days. These gatherings may include puja, kirtan,
-          cultural programming, and prasad.
-        </div>
-        <div class="mt-4 flex flex-wrap gap-2">
-          {festivals.map((f) => (
-            <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
-              {f}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <div class="text-sm font-semibold text-slate-900">Puja requests and ceremonies</div>
-        <div class="mt-3 text-sm text-slate-700">
-          The temple community may support requested ceremonies such as havan, bhumi puja, vehicle puja, and other
-          family and faith related prayers. Sharing the preferred date and purpose in advance helps the temple
-          coordinate appropriately.
-        </div>
-        <div class="mt-4">
-          <a href="#contact" class="text-sm font-semibold text-slate-900 hover:underline">
-            Request a puja via the contact form
-          </a>
-        </div>
-      </div>
-
-      <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <div class="text-sm font-semibold text-slate-900">Children and family focus</div>
-        <div class="mt-3 text-sm text-slate-700">
-          Part of the mission is to educate children on values of life and spiritual philosophy through involvement
-          in prayers, cultural events, and community learning.
-        </div>
-      </div>
-
-      <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:col-span-2">
-        <div class="text-sm font-semibold text-slate-900">Volunteer and get involved</div>
-        <div class="mt-3 text-sm text-slate-700">
-          The temple is powered by volunteers. You can help with:
-        </div>
-        <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {volunteerAreas.map((v) => (
-            <div class="rounded-xl bg-slate-50 p-4 text-sm text-slate-700">
-              {v}
-            </div>
-          ))}
-        </div>
-        <div class="mt-5">
-          <a href="#contact" class="inline-flex rounded-lg bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-800">
-            Volunteer via the contact form
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EVENTS -->
-  <section id="events" class="mx-auto max-w-6xl px-4 py-12">
-    <SectionHeading
-      title="Events"
-      subtitle="Announcements, schedules, and community updates."
-    />
-
-    <div class="grid gap-6 md:grid-cols-2">
-      <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <div class="text-sm font-semibold text-slate-900">Upcoming events</div>
-        <p class="mt-3 text-sm text-slate-700">
-          This is the official place to find upcoming events, festival schedules, and community announcements.
-        </p>
-
-        <div class="mt-4 rounded-xl bg-slate-50 p-4 text-sm text-slate-700">
-          <div class="font-semibold text-slate-900">Weekly gathering reminder</div>
-          <div class="mt-1">
-            Sunday Darshan and Prayer Gathering · <span class="font-semibold">11:00 AM to 1:00 PM</span>
-          </div>
-          <div class="mt-2 text-slate-600">
-            Festival schedules and special pujas will be posted here once confirmed.
-          </div>
-        </div>
-      </div>
-
-      <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <div class="text-sm font-semibold text-slate-900">What we post here</div>
-        <ul class="mt-4 space-y-2 text-sm text-slate-700">
-          <li class="flex gap-2">
-            <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-900"></span>
-            Weekly gathering reminders
-          </li>
-          <li class="flex gap-2">
-            <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-900"></span>
-            Festival schedules and special pujas
-          </li>
-          <li class="flex gap-2">
-            <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-900"></span>
-            Community wide cultural programs
-          </li>
-          <li class="flex gap-2">
-            <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-900"></span>
-            Fundraising initiatives
-          </li>
-          <li class="flex gap-2">
-            <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-900"></span>
-            Temple updates and notices
-          </li>
-        </ul>
-      </div>
-
-      <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <div class="text-sm font-semibold text-slate-900">Community initiatives</div>
-        <p class="mt-3 text-sm text-slate-700">
-          The temple has organized and participated in fundraising and outreach initiatives, including support for local causes.
-          Events may also be coordinated alongside other Sudbury cultural organizations for larger celebrations.
-        </p>
-      </div>
-
-      <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <div class="text-sm font-semibold text-slate-900">How to stay updated</div>
-        <div class="mt-3 space-y-3 text-sm text-slate-700">
-          <p>
-            Because the older website is inactive, the best ways to stay current are:
-          </p>
-          <ul class="space-y-2">
-            <li class="flex gap-2">
-              <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-900"></span>
-              Visit the temple on Sunday during service time
-            </li>
-            <li class="flex gap-2">
-              <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-900"></span>
-              Follow and check Facebook updates where events are frequently shared
-            </li>
-            <li class="flex gap-2">
-              <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-900"></span>
-              Monitor local news coverage during major festivals and community events
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- GALLERY -->
-  <section id="gallery" class="mx-auto max-w-6xl px-4 py-12">
-    <SectionHeading
-      title="Gallery"
-      subtitle="Photos and highlights from festivals, gatherings, and community moments."
-    />
-
-    <div class="grid gap-6 md:grid-cols-2 md:items-start">
-      <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <div class="text-sm font-semibold text-slate-900">What you will find here</div>
-        <p class="mt-3 text-sm text-slate-700">
-          Photos and highlights from festival celebrations, Sunday gatherings, temple interior, volunteer activities,
-          cultural programs, and community collaborations.
-        </p>
-
-        <div class="mt-5 rounded-xl bg-slate-50 p-4 text-sm text-slate-700">
-          <div class="font-semibold text-slate-900">Suggested gallery layout</div>
-          <ul class="mt-2 space-y-2">
-            <li class="flex gap-2">
-              <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-900"></span>
-              Albums by year
-            </li>
-            <li class="flex gap-2">
-              <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-900"></span>
-              Albums by festival
-            </li>
-            <li class="flex gap-2">
-              <span class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-900"></span>
-              Albums for major community events
-            </li>
-          </ul>
-        </div>
-
-        <div class="mt-5 rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-700">
-          <div class="font-semibold text-slate-900">Respectful media note</div>
-          <p class="mt-2">
-            Please be respectful when taking photos inside the temple. If an event involves children or private ceremonies,
-            follow the organizers’ guidance on photography.
-          </p>
-        </div>
-      </div>
-
-      <div class="space-y-4">
-        <div class="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm">
+        <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
           <img
             src="/images/temple.jpg"
-            alt="Temple prayer space"
-            class="h-72 w-full object-cover md:h-80"
+            alt="Sudbury Prarthna Samaj temple"
+            class="h-72 w-full object-cover md:h-[420px]"
             loading="lazy"
           />
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="grid gap-3 sm:grid-cols-2">
-          {galleryCards.map((g) => (
-            <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-              <div class="text-sm font-semibold text-slate-900">{g.title}</div>
-              <div class="mt-2 text-sm text-slate-700">{g.description}</div>
-            </div>
+  <!-- SUNDAY HIGHLIGHT + FIRST VISIT -->
+  <section class="mx-auto max-w-6xl px-4 py-12">
+    <div class="grid gap-6 md:grid-cols-2">
+      <div class="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
+        <div class="text-sm font-semibold text-slate-600">Sunday service</div>
+        <div class="mt-2 text-2xl font-semibold text-slate-900">{sundayService.title}</div>
+        <div class="mt-3 text-base text-slate-700">{sundayService.time}</div>
+        <div class="mt-2 text-base text-slate-700">{sundayService.note}</div>
+
+        <a
+          href="/contact"
+          class="mt-6 inline-block rounded-lg bg-slate-900 px-6 py-3 text-base font-semibold text-white hover:bg-slate-800"
+        >
+          Ask a question
+        </a>
+      </div>
+
+      <div class="rounded-2xl border border-slate-200 bg-slate-50 p-7">
+        <div class="text-2xl font-semibold text-slate-900">What to expect on your first visit</div>
+        <ul class="mt-4 list-disc space-y-2 pl-5 text-base text-slate-700">
+          {firstVisit.map((x) => (
+            <li>{x}</li>
           ))}
+        </ul>
+
+        <div class="mt-6 text-sm text-slate-600">
+          For puja requests or volunteering, please use the contact page.
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT (Donate + Contact combined) -->
-  <section id="contact" class="mx-auto max-w-6xl px-4 py-12">
-    <SectionHeading
-      title="Donate and contact"
-      subtitle="Support the temple and reach out for puja requests, volunteering, and general inquiries."
-    />
+  <!-- QUICK ACTIONS (kept short and scannable) -->
+  <section class="mx-auto max-w-6xl px-4 pb-12">
+    <div class="flex items-end justify-between gap-6">
+      <div>
+        <h2 class="text-2xl font-semibold text-slate-900">Quick links</h2>
+        <p class="mt-2 text-base text-slate-700">Start here for the most common actions.</p>
+      </div>
+    </div>
 
-    <div class="grid gap-6 md:grid-cols-2 md:items-start">
-      <!-- Donate -->
-      <div class="rounded-2xl bg-slate-900 p-6 text-white shadow-sm">
-        <div class="text-sm font-semibold">Donate</div>
-        <p class="mt-3 text-sm text-white/85">
-          Your donation supports temple maintenance, worship services, festivals, community meals or prasad,
-          and improvements that keep the space welcoming and accessible.
-        </p>
-
-        <div class="mt-5 rounded-xl bg-white/10 p-4 text-sm text-white/85 ring-1 ring-white/15">
-          <div class="font-semibold text-white">Charity details</div>
-          <div class="mt-2">
-            Registered Charity Name: <span class="font-semibold">Sudbury Prarthana Samaj</span>
-          </div>
-          <div class="mt-1">
-            Charity Registration Number: <span class="font-semibold">119205078 RR 0001</span>
-          </div>
-        </div>
-
+    <div class="mt-6 grid gap-4 sm:grid-cols-2">
+      {quickActions.map((x) => (
         <a
-          href={CANADAHELPS_URL}
-          target={CANADAHELPS_URL === "#" ? undefined : "_blank"}
-          rel={CANADAHELPS_URL === "#" ? undefined : "noopener noreferrer"}
-          class="mt-5 inline-flex w-full items-center justify-center rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100"
+          href={x.href}
+          class="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:bg-slate-50"
         >
-          Donate via CanadaHelps
+          <div class="text-xl font-semibold text-slate-900 group-hover:underline">{x.title}</div>
+          <div class="mt-2 text-base text-slate-700">{x.desc}</div>
+          <div class="mt-4 text-base font-semibold text-slate-900">
+            Open
+          </div>
         </a>
+      ))}
+    </div>
 
-        {CANADAHELPS_URL === "#" ? (
-          <div class="mt-3 text-xs text-white/75">
-            CanadaHelps link not set yet. Replace it in this file before publishing.
-          </div>
-        ) : null}
-      </div>
-
-      <!-- Contact + Visit -->
-      <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <div class="text-sm font-semibold text-slate-900">Contact and visit</div>
-
-        <div class="mt-4 space-y-3 text-sm text-slate-700">
-          <div>
-            <div class="text-xs font-semibold text-slate-500">Temple address</div>
-            <div class="mt-1 font-semibold text-slate-900">{TEMPLE_ADDRESS}</div>
-            <div class="mt-1 text-xs text-slate-500">
-              Note: some public listings show different postal codes for the same street address.
-              Use the postal code you prefer after confirming it.
-            </div>
-          </div>
-
-          <div>
-            <div class="text-xs font-semibold text-slate-500">Mailing address (administrative)</div>
-            <div class="mt-1">{MAILING_ADDRESS}</div>
-          </div>
-
-          <div class="grid gap-3 sm:grid-cols-2">
-            <div>
-              <div class="text-xs font-semibold text-slate-500">Email</div>
-              <a href={`mailto:${TEMPLE_EMAIL}`} class="mt-1 inline-block font-semibold text-slate-900 hover:underline">
-                {TEMPLE_EMAIL}
-              </a>
-            </div>
-            <div>
-              <div class="text-xs font-semibold text-slate-500">Phone</div>
-              <div class="mt-1 font-semibold text-slate-900">{PHONE_DISPLAY}</div>
-              <div class="mt-1 text-xs text-slate-500">
-                Please confirm one official number and use it consistently on the website.
-              </div>
-            </div>
-          </div>
-
-          <div class="rounded-xl bg-slate-50 p-4">
-            <div class="text-xs font-semibold text-slate-500">Best time to visit</div>
-            <div class="mt-1 text-sm font-semibold text-slate-900">{VISIT_TIME}</div>
-          </div>
-        </div>
-
-        <!-- Contact Form (client-side mailto composer) -->
-        <div class="mt-8">
-          <div class="text-sm font-semibold text-slate-900">Contact form</div>
-          <p class="mt-2 text-sm text-slate-600">
-            This form will open your email app to send the message. If you want true form submissions,
-            we can connect this to a form service in the next step.
-          </p>
-
-          <form id="contactForm" class="mt-4 grid gap-4">
-            <div class="grid gap-4 sm:grid-cols-2">
-              <div>
-                <label class="text-xs font-semibold text-slate-600" for="name">Name</label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  required
-                  class="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-slate-400"
-                  placeholder="Your name"
-                />
-              </div>
-
-              <div>
-                <label class="text-xs font-semibold text-slate-600" for="contactInfo">Email or phone</label>
-                <input
-                  id="contactInfo"
-                  name="contactInfo"
-                  type="text"
-                  required
-                  class="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-slate-400"
-                  placeholder="Email or phone number"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label class="text-xs font-semibold text-slate-600" for="reason">Reason for message</label>
-              <select
-                id="reason"
-                name="reason"
-                class="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-slate-400"
-              >
-                <option>General inquiry</option>
-                <option>Puja request</option>
-                <option>Volunteering</option>
-                <option>Donation question</option>
-              </select>
-            </div>
-
-            <div>
-              <label class="text-xs font-semibold text-slate-600" for="message">Message</label>
-              <textarea
-                id="message"
-                name="message"
-                rows="5"
-                required
-                class="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-slate-400"
-                placeholder="Write your message..."
-              ></textarea>
-            </div>
-
-            <button
-              type="submit"
-              class="inline-flex w-full items-center justify-center rounded-lg bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-800"
-            >
-              Send message
-            </button>
-          </form>
-
-          <script>
-            const form = document.getElementById("contactForm");
-            if (form) {
-              form.addEventListener("submit", (e) => {
-                e.preventDefault();
-
-                const name = document.getElementById("name")?.value || "";
-                const contactInfo = document.getElementById("contactInfo")?.value || "";
-                const reason = document.getElementById("reason")?.value || "";
-                const message = document.getElementById("message")?.value || "";
-
-                const subject = encodeURIComponent(`Website Contact: ${reason}`);
-                const body = encodeURIComponent(
-`Name: ${name}
-Email/Phone: ${contactInfo}
-Reason: ${reason}
-
-Message:
-${message}
-`
-                );
-
-                window.location.href = `mailto:${"sudbury.mandir@gmail.com"}?subject=${subject}&body=${body}`;
-              });
-            }
-          </script>
-        </div>
-      </div>
+    <div class="mt-10 text-sm text-slate-600">
+      {charityLine}
     </div>
   </section>
 </Layout>
