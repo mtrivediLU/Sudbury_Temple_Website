@@ -2,40 +2,225 @@
 import Layout from "../layouts/Layout.astro";
 import SectionHeading from "../components/ui/SectionHeading.astro";
 
-const services = [
-  { title: "Regular Puja", desc: "Weekly and regular prayer services for the community." },
-  { title: "Festival Puja", desc: "Festival celebrations and special programs throughout the year." },
-  { title: "Special Puja", desc: "Puja by request for specific occasions and spiritual needs." },
-  { title: "Car Puja", desc: "Blessings for a new car or vehicle." },
-  { title: "House Warming Puja", desc: "Griha Pravesh style puja for new homes." },
-  { title: "Wedding and Ceremony Support", desc: "Support for traditional ceremonies, based on availability." },
+/**
+ * SERVICES PAGE (based on your provided copy)
+ * Notes:
+ * - Keep times and festival list as “typical” until the committee confirms.
+ * - Puja requests: route users to Contact page (form / phone).
+ */
+
+const weeklyServices = [
+  {
+    title: "Sunday Darshan and Satsang",
+    time: "Typical time: 11:00 AM to 1:00 PM",
+    desc: "Includes bhajans, prayers, spiritual reflection, and community fellowship. Prayers are followed by prasad and community time.",
+  },
+];
+
+const festivals = [
+  "Diwali",
+  "Navratri",
+  "Holi",
+  "Janmashtami",
+  "Maha Shivratri",
+  "Ram Navami",
+];
+
+const pujaRequests = [
+  { title: "Havan", desc: "Puja requests can be supported based on availability and scheduling." },
+  { title: "Bhumi puja", desc: "For new homes, projects, and significant milestones." },
+  { title: "Vehicle puja", desc: "Blessings for a new or existing vehicle." },
+  { title: "Other family and faith related prayers", desc: "Share the purpose and preferred date so the temple can coordinate appropriately." },
+];
+
+const volunteerWays = [
+  "Event setup and cleanup",
+  "Prasad preparation and serving",
+  "Festival planning",
+  "Community outreach",
+  "Communications and website support",
 ];
 ---
 
-<Layout title="Sudbury Prarthna Samaj | Services">
+<Layout
+  title="Sudbury Prarthna Samaj | Services"
+  description="Services and programs at Sudbury Prarthna Samaj including weekly gatherings, festivals, puja requests, and volunteering."
+>
+  <!-- HERO -->
+  <section class="mx-auto max-w-6xl px-4 pb-6 pt-10 md:pt-12">
+    <div class="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+      Services and Programs
+    </div>
+
+    <h1 class="mt-4 text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl">
+      Worship, festivals, and community programs
+    </h1>
+
+    <p class="mt-4 max-w-3xl text-sm leading-relaxed text-slate-700 md:text-base">
+      Sudbury Prarthana Samaj brings the community together through weekly prayers, devotional singing,
+      spiritual reflection, festivals, and fellowship. This page summarizes what we offer and how to request a puja.
+    </p>
+  </section>
+
+  <!-- WEEKLY SERVICES -->
   <section class="mx-auto max-w-6xl px-4 py-12">
     <SectionHeading
-      title="Puja and services"
-      subtitle="This is a starter list. Update items, pricing, and booking process once confirmed by the temple team."
+      title="Weekly services"
+      subtitle="Join the community for regular worship and satsang."
     />
 
     <div class="grid gap-4 md:grid-cols-2">
-      {services.map((s) => (
-        <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-          <div class="text-sm font-semibold">{s.title}</div>
-          <div class="mt-2 text-sm text-slate-700">{s.desc}</div>
+      {weeklyServices.map((s) => (
+        <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="text-sm font-semibold text-slate-900">{s.title}</div>
+          <div class="mt-2 text-sm font-semibold text-slate-700">{s.time}</div>
+          <p class="mt-3 text-sm text-slate-700">{s.desc}</p>
+
+          <div class="mt-5 rounded-xl bg-slate-50 p-4 text-sm text-slate-700">
+            If it is your first visit, you can expect a respectful and welcoming environment, bhajans and prayers,
+            and prasad with fellowship after the program.
+          </div>
+        </div>
+      ))}
+
+      <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
+        <div class="text-sm font-semibold text-slate-900">Children and family focus</div>
+        <p class="mt-3 text-sm text-slate-700">
+          Part of the temple mission is to support children and youth in learning values of life and spiritual philosophy,
+          through involvement in prayers, cultural events, and community learning.
+        </p>
+
+        <div class="mt-5 rounded-xl bg-white p-4 text-sm text-slate-700 ring-1 ring-slate-200">
+          Family friendly atmosphere and newcomer friendly community.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FESTIVALS -->
+  <section class="mx-auto max-w-6xl px-4 py-12">
+    <SectionHeading
+      title="Festivals and special gatherings"
+      subtitle="Major Hindu festivals and holy days celebrated by the temple community."
+    />
+
+    <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+      <p class="text-sm text-slate-700">
+        The temple celebrates major Hindu festivals and holy days. These gatherings may include puja, kirtan,
+        cultural programming, and prasad.
+      </p>
+
+      <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {festivals.map((f) => (
+          <div class="rounded-xl bg-slate-50 p-4 text-sm font-semibold text-slate-900">
+            {f}
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a
+          href="/events"
+          class="rounded-lg bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-800"
+        >
+          View announcements and events
+        </a>
+        <a
+          href="/contact"
+          class="rounded-lg border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-50"
+        >
+          Ask about festival schedules
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUJA REQUESTS -->
+  <section class="mx-auto max-w-6xl px-4 py-12">
+    <SectionHeading
+      title="Puja requests and ceremonies"
+      subtitle="Requests can be supported based on availability. Share your preferred date and purpose in advance."
+    />
+
+    <div class="grid gap-4 md:grid-cols-2">
+      {pujaRequests.map((p) => (
+        <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="text-sm font-semibold text-slate-900">{p.title}</div>
+          <p class="mt-3 text-sm text-slate-700">{p.desc}</p>
         </div>
       ))}
     </div>
 
-    <div class="mt-10 rounded-2xl bg-slate-900 p-7 text-white">
-      <div class="text-lg font-semibold">Request a booking</div>
+    <div class="mt-8 rounded-2xl bg-slate-900 p-7 text-white">
+      <div class="text-lg font-semibold">How to request a puja</div>
       <p class="mt-2 text-sm text-white/85">
-        Please contact us with the service name, preferred date, and any details. We will respond with availability and next steps.
+        Use the contact form and include the purpose, preferred date, and any details. If you are comfortable,
+        share a few date options so scheduling is easier.
       </p>
-      <a href="/contact" class="mt-4 inline-block rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100">
-        Contact for booking
+      <a
+        href="/contact"
+        class="mt-4 inline-block rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100"
+      >
+        Contact for puja request
       </a>
+    </div>
+  </section>
+
+  <!-- COMMUNITY SUPPORT -->
+  <section class="mx-auto max-w-6xl px-4 py-12">
+    <SectionHeading
+      title="Community support"
+      subtitle="Fellowship and support beyond the service itself."
+    />
+
+    <div class="grid gap-4 md:grid-cols-2">
+      <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="text-sm font-semibold text-slate-900">Prasad and community time</div>
+        <p class="mt-3 text-sm text-slate-700">
+          Prayers are often followed by food distribution as prasad, creating space for connection and support.
+        </p>
+      </div>
+
+      <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="text-sm font-semibold text-slate-900">Community engagement</div>
+        <p class="mt-3 text-sm text-slate-700">
+          The temple community has supported local causes through fundraising and community engagement,
+          and has adapted responsibly during periods such as the COVID 19 pandemic to protect members.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VOLUNTEER -->
+  <section class="mx-auto max-w-6xl px-4 pb-16 pt-4">
+    <div class="rounded-2xl border border-slate-200 bg-slate-50 p-7 shadow-sm">
+      <SectionHeading
+        title="Volunteer and get involved"
+        subtitle="The temple is powered by volunteers. If you want to help, tell us what you are interested in."
+      />
+
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {volunteerWays.map((v) => (
+          <div class="rounded-xl bg-white p-4 text-sm font-semibold text-slate-900 ring-1 ring-slate-200">
+            {v}
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a
+          href="/contact"
+          class="rounded-lg bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-800"
+        >
+          Volunteer interest form
+        </a>
+        <a
+          href="/events"
+          class="rounded-lg border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-50"
+        >
+          See upcoming activities
+        </a>
+      </div>
     </div>
   </section>
 </Layout>

@@ -1,40 +1,222 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import SectionHeading from "../components/ui/SectionHeading.astro";
+
+/**
+ * ABOUT PAGE CONTENT (based on your provided copy)
+ * Notes:
+ * - Board / current directors: keep intentionally general until officially confirmed.
+ * - Image: ensure /public/images/temple.jpg exists.
+ */
+
+const missionObjectives = [
+  {
+    title: "Advancement of Religion",
+    description: "Establishing and maintaining a place of worship for the Hindu community.",
+  },
+  {
+    title: "Cultural Awareness",
+    description: "Sharing Indian heritage and culture with the broader society.",
+  },
+  {
+    title: "Education",
+    description: "Supporting children and youth in learning values of life and spiritual philosophy.",
+  },
+  {
+    title: "Community",
+    description: "Creating a welcoming atmosphere for individuals and families to gather for worship, fellowship, and support.",
+  },
+];
+
+const timeline = [
+  {
+    year: "Origins",
+    title: "Community roots",
+    description:
+      "The community formed to preserve Indian heritage, religion, and social customs in Greater Sudbury through prayer meetings and gatherings.",
+  },
+  {
+    year: "1976",
+    title: "Prayer gatherings began",
+    description:
+      "Prayer gatherings began and the community started organizing regular meetings.",
+  },
+  {
+    year: "1986",
+    title: "Permanent place of worship established",
+    description:
+      "A permanent place of worship was established in the Donovan area by acquiring and renovating an existing church building.",
+  },
+  {
+    year: "2013",
+    title: "Major improvements funded",
+    description:
+      "A major fundraising initiative supported improvements such as accessibility and interior renovations to better serve worship and community gatherings.",
+  },
+  {
+    year: "Today",
+    title: "A spiritual and cultural hub",
+    description:
+      "The temple continues to grow and serve as a spiritual and cultural hub for Northern Ontario.",
+  },
+];
+
+const highlights = [
+  {
+    title: "Who we are",
+    description:
+      "Sudbury Prarthana Samaj is a non profit Hindu community organization and temple serving Greater Sudbury. We provide a place for worship, spiritual growth, cultural celebration, and community connection.",
+  },
+  {
+    title: "Leadership and volunteers",
+    description:
+      "Sudbury Prarthana Samaj is supported by dedicated volunteers and community leaders who help plan services, festivals, and temple operations. The current Board of Directors list is best shared through official temple communications and announcements.",
+  },
+  {
+    title: "Community partnerships",
+    description:
+      "The temple participates in Sudbury’s multicultural landscape and collaborates with local cultural groups for larger celebrations and community wide initiatives. The community has also supported local causes and community well being.",
+  },
+];
 ---
 
-<Layout title="Sudbury Prarthna Samaj | About">
-  <section class="mx-auto max-w-6xl px-4 py-12">
-    <SectionHeading
-      title="About Sudbury Prarthna Samaj"
-      subtitle="A community focused Hindu temple supporting prayer, culture, and service."
-    />
+<Layout
+  title="Sudbury Prarthna Samaj | Our Story"
+  description="Learn about Sudbury Prarthna Samaj: our mission, objectives, history, and role in the Greater Sudbury community."
+>
+  <!-- HERO -->
+  <section class="mx-auto max-w-6xl px-4 pb-6 pt-10 md:pt-12">
+    <div class="grid gap-8 md:grid-cols-2 md:items-center">
+      <div>
+        <div class="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+          Our Story
+        </div>
 
-    <div class="grid gap-10 md:grid-cols-2 md:items-start">
-      <div class="space-y-4 text-sm text-slate-700">
-        <p>
-          Sudbury Prarthna Samaj exists to support spiritual practice and community connection in Greater Sudbury.
-          We welcome families, students, and visitors who wish to participate in prayer programs and cultural events.
-        </p>
-        <p>
-          This website is being rebuilt. Content such as board members, membership details, and official schedules
-          will be updated as soon as they are confirmed by the temple committee.
+        <h1 class="mt-4 text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl">
+          About Sudbury Prarthna Samaj
+        </h1>
+
+        <p class="mt-4 text-sm leading-relaxed text-slate-700 md:text-base">
+          Sudbury Prarthana Samaj is a non profit Hindu community organization and temple serving Greater Sudbury.
+          We provide a place for worship, spiritual growth, cultural celebration, and community connection.
         </p>
 
-        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-          <div class="text-sm font-semibold text-slate-900">Membership</div>
-          <p class="mt-2 text-sm text-slate-700">
-            Membership supports temple operations and helps organize programs and festivals. For membership requests,
-            please contact us and we will share the latest membership process and fees.
-          </p>
-          <a href="/contact" class="mt-3 inline-block text-sm font-semibold text-slate-900 hover:underline">
-            Contact for membership
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a
+            href="/services"
+            class="rounded-lg bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-800"
+          >
+            Explore services
+          </a>
+          <a
+            href="/contact"
+            class="rounded-lg border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-50"
+          >
+            Contact us
           </a>
         </div>
       </div>
 
-      <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-        <img src="/images/temple.jpg" alt="Temple" class="h-80 w-full object-cover" loading="lazy" />
+      <div class="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm">
+        <img
+          src="/images/temple.jpg"
+          alt="Temple prayer space"
+          class="h-72 w-full object-cover md:h-80"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO WE ARE / LEADERSHIP / PARTNERSHIPS -->
+  <section class="mx-auto max-w-6xl px-4 py-12">
+    <SectionHeading
+      title="Who we are"
+      subtitle="A temple and community organization supporting worship, culture, and connection in Greater Sudbury."
+    />
+
+    <div class="grid gap-4 md:grid-cols-3">
+      {highlights.map((h) => (
+        <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="text-sm font-semibold text-slate-900">{h.title}</div>
+          <p class="mt-3 text-sm text-slate-700">{h.description}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- MISSION + OBJECTIVES -->
+  <section class="mx-auto max-w-6xl px-4 py-12">
+    <SectionHeading
+      title="Mission and objectives"
+      subtitle="What guides our work as a temple and community organization."
+    />
+
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {missionObjectives.map((m) => (
+        <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div class="text-sm font-semibold text-slate-900">{m.title}</div>
+          <div class="mt-3 text-sm text-slate-700">{m.description}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- HISTORY + GROWTH -->
+  <section class="mx-auto max-w-6xl px-4 py-12">
+    <SectionHeading
+      title="History and growth"
+      subtitle="Key milestones in the journey of Sudbury Prarthna Samaj."
+    />
+
+    <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+      <div class="grid gap-4 md:grid-cols-2">
+        {timeline.map((t) => (
+          <div class="rounded-2xl bg-slate-50 p-5">
+            <div class="flex items-baseline justify-between gap-4">
+              <div class="text-sm font-semibold text-slate-900">{t.title}</div>
+              <div class="text-xs font-semibold text-slate-700">{t.year}</div>
+            </div>
+            <div class="mt-2 text-sm text-slate-700">{t.description}</div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-6 rounded-xl border border-slate-200 bg-white p-5">
+        <div class="text-sm font-semibold text-slate-900">Community role in Sudbury</div>
+        <p class="mt-3 text-sm text-slate-700">
+          The temple participates in Sudbury’s multicultural landscape and may collaborate with local cultural groups
+          for larger celebrations and community wide initiatives. The temple has also been active in supporting local
+          causes and community well being.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="mx-auto max-w-6xl px-4 pb-16 pt-4">
+    <div class="rounded-2xl bg-slate-900 p-8 text-white md:p-10">
+      <div class="grid gap-6 md:grid-cols-2 md:items-center">
+        <div>
+          <div class="text-2xl font-semibold tracking-tight">Visit and participate</div>
+          <p class="mt-2 text-sm text-white/85">
+            Join us for Sunday gatherings, festival celebrations, and community programs. If you are new, we are happy to help you plan your first visit.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3 md:justify-end">
+          <a
+            href="/events"
+            class="rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-100"
+          >
+            View events
+          </a>
+          <a
+            href="/services"
+            class="rounded-lg bg-white/10 px-5 py-2.5 text-sm font-semibold text-white ring-1 ring-white/20 hover:bg-white/15"
+          >
+            Services and programs
+          </a>
+        </div>
       </div>
     </div>
   </section>
